@@ -1,0 +1,20 @@
+services:
+    mc-bedrock:
+        image: itzg/minecraft-bedrock-server
+        container_name: mc-bedrock
+        environment:
+            EULA: "TRUE"
+            GAMEMODE: survival
+            DIFFICULTY: normal
+            SERVER_NAME: "Server Mabar"
+        volumes:
+        - ./data:/data
+        restart: unless-stopped
+        ports:
+        - "19132:19132/udp"
+    playit:
+        image: ghcr.io/playit-cloud/playit-agent:0.16
+        network_mode: host
+        environment:
+        - SECRET_KEY=${PLAYIT_SECRET_KEY}
+        restart: unless-stopped
