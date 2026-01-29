@@ -4,7 +4,7 @@ services:
         container_name: mc-bedrock
         environment:
             EULA: "TRUE"
-            GAMEMODE: survival
+            GAMEMODE: creative
             DIFFICULTY: normal
             SERVER_NAME: "Server Mabar"
         volumes:
@@ -14,6 +14,7 @@ services:
         - "19132:19132/udp"
     playit:
         image: ghcr.io/playit-cloud/playit-agent:0.16
+        container_name: playit-proxy
         network_mode: host
         environment:
         - SECRET_KEY=${PLAYIT_SECRET_KEY}
